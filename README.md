@@ -1,4 +1,4 @@
-# SkillNest--Online-Learning-Platform
+# SkillNest-Online-Learning-Platform
 CSE327 Software Engineering Project
 
 Project Name: SkillNest- Online Learning Platform
