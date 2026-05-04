@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillNest - Online Learning Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+  
+        .announcement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .announcement-card {
+            background: #fff;
+            border-left: 4px solid #4a90d9;
+            border-radius: 6px;
+            padding: 14px 18px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        .announcement-card .course-badge {
+            display: inline-block;
+            background: #e3f0fb;
+            color: #2a6099;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+        .announcement-card .message-text {
+            font-size: 15px;
+            color: #222;
+            line-height: 1.5;
+        }
+        .no-announcements {
+            color: #888;
+            font-style: italic;
+            padding: 12px 0;
+        }
+
+      
+        #announcements p {
+            background: #fff;
+            border-left: 4px solid #4a90d9;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            font-size: 15px;
+            color: #222;
+            line-height: 1.5;
+        }
+        #announcements h3 {
+            color: #555;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+   
+    <header class="top-header" id="dashboard">
+        <h1>SkillNest - Student Dashboard</h1>
+    </header>
+
+  
+    <nav class="navbar">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#courses">Courses</a>
+        <a href="#lessons">Lessons</a>
+        <a href="#quizzes">Quizzes</a>
+        <a href="#results">Results</a>
+        <a href="#grades">Grades</a>
+        <a href="#announcements">Announcements</a>
+        <a href="/login">Logout</a>
+    </nav>
+
+   
+    <section class="stats-container">
+        <div class="card">Enrolled Courses</div>
+        <div class="card">Completed Lessons</div>
+        <div class="card">Pending Quizzes</div>
+        <div class="card">Published Grades</div>
+    </section>
+
+    
+    <section class="quick-access">
+        <h2>Student Quick Access</h2>
+        <div class="quick-grid">
+            <div class="quick-card"><h3>Courses</h3><p>View enrolled courses</p></div>
+            <div class="quick-card"><h3>Lessons</h3><p>Access learning materials</p></div>
+            <div class="quick-card"><h3>Quizzes</h3><p>Take available quizzes</p></div>
+            <div class="quick-card"><h3>Results</h3><p>Check quiz performance</p></div>
+            <div class="quick-card"><h3>Grades</h3><p>See published grades</p></div>
+            <div class="quick-card"><h3>Announcements</h3><p>Stay updated</p></div>
+        </div>
+    </section>
+
+    
+    <section class="table-section" id="courses">
+        <section class="table-section">
+            <h2>Available Courses</h2>
+            {{available_courses}}
+        </section>
+        {{student_courses}}
+    </section>
+
+  
+    <section class="table-section" id="lessons">
+        <h2>Lessons</h2>
+        {{student_lessons}}
+    </section>
+
+
+    <section class="table-section" id="quizzes">
+        <h2>Available Quizzes</h2>
+       <form action="/take-quiz" method="POST">
+    <label>Quiz ID:</label><br>
+    <input type="number" name="quiz_id" required><br><br>
+
+    <button type="submit">Take Quiz</button>
+</form>
+
+{{student_quizzes}}
+    </section>
+
+    
+    <section class="table-section" id="results">
+        <h2>Quiz Results</h2>
+        {{student_results}}
+    </section>
+
+  
+    <section class="table-section" id="grades">
+        <h2>Published Grades</h2>
+        {{student_grades}}
+    </section>
+
+  
+    <section class="table-section" id="announcements">
+        <h2>Announcements</h2>
+        {{student_announcements}}
+    </section>
+
+    
+    <footer>
+        © SkillNest - Student Portal
+    </footer>
+
+</body>
+</html>
