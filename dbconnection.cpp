@@ -1,6 +1,10 @@
 #include "dbconnection.h"
 #include <jdbc/cppconn/exception.h>
+<<<<<<< HEAD
 #include "decorator.h"
+=======
+
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 DBConnection* DBConnection::instance = nullptr;
 
 //Constructor 
@@ -44,6 +48,214 @@ sql::Connection* DBConnection::getConnection() {
 }
 
 
+<<<<<<< HEAD
+=======
+bool DBConnection::loginUser(string email, string password, string &role) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query = "SELECT role FROM users WHERE email='" + email +
+                       "' AND password='" + password + "'";
+
+        sql::ResultSet* res = stmt->executeQuery(query);
+
+        if (res->next()) {
+            role = res->getString("role");
+
+            delete res;
+            delete stmt;
+
+            return true;
+        }
+
+        delete res;
+        delete stmt;
+
+        return false;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Login query failed: " << e.what() << endl;
+        return false;
+    }
+}
+
+<<<<<<< HEAD
+=======
+bool DBConnection::registerUser(string name, string email, string password, string role) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query = "INSERT INTO users (name, email, password, role) VALUES ('" +
+                       name + "', '" + email + "', '" + password + "', '" + role + "')";
+
+        stmt->execute(query);
+
+        delete stmt;
+
+        return true;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Registration failed: " << e.what() << endl;
+        return false;
+    }
+}
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+
+
+bool DBConnection::addCourse(string title, string description, string teacherName) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query = "INSERT INTO courses (title, description, teacher_name) VALUES ('" +
+                       title + "', '" + description + "', '" + teacherName + "')";
+
+        stmt->execute(query);
+
+        delete stmt;
+
+        return true;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Course creation failed: " << e.what() << endl;
+        return false;
+    }
+}
+
+
+void DBConnection::viewCourses() {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        sql::ResultSet* res = stmt->executeQuery("SELECT * FROM courses");
+
+        cout << "\n=== Available Courses ===" << endl;
+
+        while (res->next()) {
+            cout << "Course ID: " << res->getInt("id") << endl;
+            cout << "Title: " << res->getString("title") << endl;
+            cout << "Description: " << res->getString("description") << endl;
+            cout << "Teacher: " << res->getString("teacher_name") << endl;
+            cout << "-------------------------" << endl;
+        }
+
+        delete res;
+        delete stmt;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Course viewing failed: " << e.what() << endl;
+    }
+}
+bool DBConnection::enrollCourse(string studentEmail, int courseId) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query = "INSERT INTO enrollments (student_email, course_id) VALUES ('" +
+                       studentEmail + "', " + to_string(courseId) + ")";
+
+        stmt->execute(query);
+
+        delete stmt;
+
+        return true;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Enrollment failed: " << e.what() << endl;
+        return false;
+    }
+}
+
+
+void DBConnection::viewStudentEnrollments(string studentEmail) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query =
+            "SELECT courses.id, courses.title, courses.description, courses.teacher_name "
+            "FROM enrollments "
+            "JOIN courses ON enrollments.course_id = courses.id "
+            "WHERE enrollments.student_email = '" + studentEmail + "'";
+
+        sql::ResultSet* res = stmt->executeQuery(query);
+
+        cout << "\n=== Enrolled Courses ===" << endl;
+
+        while (res->next()) {
+            cout << "Course ID: " << res->getInt("id") << endl;
+            cout << "Title: " << res->getString("title") << endl;
+            cout << "Description: " << res->getString("description") << endl;
+            cout << "Teacher: " << res->getString("teacher_name") << endl;
+            cout << "-------------------------" << endl;
+        }
+
+        delete res;
+        delete stmt;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Viewing enrollments failed: " << e.what() << endl;
+    }
+}
+bool DBConnection::addLesson(int courseId, string title, string videoURL, string content) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query =
+            "INSERT INTO lessons (course_id, title, video_url, content) VALUES (" +
+            to_string(courseId) + ", '" + title + "', '" + videoURL + "', '" + content + "')";
+
+        stmt->execute(query);
+
+        delete stmt;
+
+        return true;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Lesson upload failed: " << e.what() << endl;
+        return false;
+    }
+}
+
+void DBConnection::viewLessons(int courseId) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query = "SELECT * FROM lessons WHERE course_id = " + to_string(courseId);
+
+        sql::ResultSet* res = stmt->executeQuery(query);
+
+        cout << "\n=== Course Lessons ===" << endl;
+
+        while (res->next()) {
+            cout << "Lesson ID: " << res->getInt("id") << endl;
+            cout << "Title: " << res->getString("title") << endl;
+            cout << "Video URL: " << res->getString("video_url") << endl;
+            cout << "Content: " << res->getString("content") << endl;
+            cout << "-------------------------" << endl;
+        }
+
+        delete res;
+        delete stmt;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Viewing lessons failed: " << e.what() << endl;
+    }
+}
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 bool DBConnection::addQuiz(int courseId, string teacherName, string title, string quizType, int totalMarks) {
 
     try {
@@ -67,6 +279,86 @@ bool DBConnection::addQuiz(int courseId, string teacherName, string title, strin
     }
 }
 
+<<<<<<< HEAD
+=======
+void DBConnection::viewQuizzes() {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        sql::ResultSet* res = stmt->executeQuery("SELECT * FROM quizzes");
+
+        cout << "\n=== Available Quizzes ===" << endl;
+
+        while (res->next()) {
+            cout << "Quiz ID: " << res->getInt("id") << endl;
+            cout << "Course ID: " << res->getInt("course_id") << endl;
+            cout << "Teacher: " << res->getString("teacher_name") << endl;
+            cout << "Title: " << res->getString("title") << endl;
+            cout << "Type: " << res->getString("quiz_type") << endl;
+            cout << "Total Marks: " << res->getInt("total_marks") << endl;
+            cout << "-------------------------" << endl;
+        }
+
+        delete res;
+        delete stmt;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Viewing quizzes failed: " << e.what() << endl;
+    }
+}
+<<<<<<< HEAD
+
+=======
+bool DBConnection::takeQuiz(string studentEmail, int quizId) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query =
+            "INSERT INTO quiz_results (student_email, quiz_id, score, graded) VALUES ('" +
+            studentEmail + "', " + to_string(quizId) + ", NULL, FALSE)";
+
+        stmt->execute(query);
+
+        delete stmt;
+
+        return true;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Quiz submission failed: " << e.what() << endl;
+        return false;
+    }
+}
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+void DBConnection::viewPendingSubmissions() {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        sql::ResultSet* res =
+            stmt->executeQuery("SELECT * FROM quiz_results WHERE graded = FALSE");
+
+        cout << "\n=== Pending Quiz Submissions ===" << endl;
+
+        while (res->next()) {
+            cout << "Result ID: " << res->getInt("id") << endl;
+            cout << "Student Email: " << res->getString("student_email") << endl;
+            cout << "Quiz ID: " << res->getInt("quiz_id") << endl;
+            cout << "-------------------------" << endl;
+        }
+
+        delete res;
+        delete stmt;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Viewing pending submissions failed: " << e.what() << endl;
+    }
+}
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 
 bool DBConnection::gradeQuiz(int resultId, int score) {
 
@@ -91,6 +383,39 @@ bool DBConnection::gradeQuiz(int resultId, int score) {
 }
 
 
+<<<<<<< HEAD
+=======
+void DBConnection::viewQuizResults(string studentEmail) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query =
+            "SELECT quizzes.title, quiz_results.score "
+            "FROM quiz_results "
+            "JOIN quizzes ON quiz_results.quiz_id = quizzes.id "
+            "WHERE quiz_results.student_email = '" + studentEmail +
+            "' AND quiz_results.graded = TRUE";
+
+        sql::ResultSet* res = stmt->executeQuery(query);
+
+        cout << "\n=== Final Quiz Results ===" << endl;
+
+        while (res->next()) {
+            cout << "Quiz: " << res->getString("title") << endl;
+            cout << "Score: " << res->getInt("score") << endl;
+            cout << "-------------------------" << endl;
+        }
+
+        delete res;
+        delete stmt;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Viewing quiz results failed: " << e.what() << endl;
+    }
+}
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 
 vector<string> DBConnection::getEnrolledStudents(int courseId) {
 
@@ -125,6 +450,7 @@ bool DBConnection::publishGrade(string studentEmail, int courseId, int marks, st
     try {
         sql::Statement* stmt = con->createStatement();
 
+<<<<<<< HEAD
         string checkQuery =
             "SELECT id FROM grades WHERE student_email = '" +
             studentEmail +
@@ -161,6 +487,15 @@ bool DBConnection::publishGrade(string studentEmail, int courseId, int marks, st
         stmt->execute(query);
 
         delete res;
+=======
+        string query =
+            "INSERT INTO grades (student_email, course_id, marks, letter_grade, published) VALUES ('" +
+            studentEmail + "', " + to_string(courseId) + ", " +
+            to_string(marks) + ", '" + letterGrade + "', TRUE)";
+
+        stmt->execute(query);
+
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
         delete stmt;
 
         return true;
@@ -172,6 +507,80 @@ bool DBConnection::publishGrade(string studentEmail, int courseId, int marks, st
     }
 }
 
+<<<<<<< HEAD
+=======
+
+void DBConnection::viewGrades(string studentEmail) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query =
+            "SELECT courses.title, grades.marks, grades.letter_grade "
+            "FROM grades "
+            "JOIN courses ON grades.course_id = courses.id "
+            "WHERE grades.student_email = '" + studentEmail +
+            "' AND grades.published = TRUE";
+
+        sql::ResultSet* res = stmt->executeQuery(query);
+
+        cout << "\n=== Published Grades ===" << endl;
+
+        while (res->next()) {
+            cout << "Course: " << res->getString("title") << endl;
+            cout << "Marks: " << res->getInt("marks") << endl;
+            cout << "Grade: " << res->getString("letter_grade") << endl;
+            cout << "-------------------------" << endl;
+        }
+
+        delete res;
+        delete stmt;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Viewing grades failed: " << e.what() << endl;
+    }
+}
+void DBConnection::viewStudentProgress(string studentEmail) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query =
+            "SELECT courses.title, progress.progress_percent, progress.completed "
+            "FROM progress "
+            "JOIN courses ON progress.course_id = courses.id "
+            "WHERE progress.student_email = '" + studentEmail + "'";
+
+        sql::ResultSet* res = stmt->executeQuery(query);
+
+        cout << "\n=== Student Progress Report ===" << endl;
+
+        while (res->next()) {
+
+            cout << "Course: " << res->getString("title") << endl;
+
+            cout << "Progress: "
+                 << res->getInt("progress_percent")
+                 << "%" << endl;
+
+            cout << "Completed: "
+                 << (res->getBoolean("completed") ? "Yes" : "No")
+                 << endl;
+
+            cout << "-------------------------" << endl;
+        }
+
+        delete res;
+        delete stmt;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Viewing progress failed: "
+             << e.what() << endl;
+    }
+}
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 string DBConnection::loginUser(string email, string password) {
 
     try {
@@ -208,8 +617,12 @@ string DBConnection::getStudentCoursesHTML(string email) {
     string html =
         "<h2>My Enrolled Courses</h2>"
         "<table border='1' cellpadding='10'>"
+<<<<<<< HEAD
         "<tr><th>Course Title</th><th>Teacher</th><th>Features</th></tr>";
 
+=======
+        "<tr><th>Course Title</th><th>Teacher</th></tr>";
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 
     try {
         sql::Statement* stmt = con->createStatement();
@@ -218,6 +631,7 @@ string DBConnection::getStudentCoursesHTML(string email) {
     "SELECT courses.title, courses.teacher_name "
     "FROM enrollments "
     "JOIN courses ON enrollments.course_id = courses.id "
+<<<<<<< HEAD
     "WHERE enrollments.student_email='" + email +
     "' AND enrollments.status='approved'";
 
@@ -239,6 +653,21 @@ string DBConnection::getStudentCoursesHTML(string email) {
             html += "</tr>";
 
             delete c;
+=======
+    "WHERE enrollments.student_email = '" + email + "'";
+
+        sql::ResultSet* res = stmt->executeQuery(query);
+
+        while (res->next()) {
+
+            html += "<tr>";
+
+            html += "<td>" + res->getString("title") + "</td>";
+
+            html += "<td>" + res->getString("teacher_name") + "</td>";
+
+            html += "</tr>";
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
         }
 
         delete res;
@@ -650,6 +1079,29 @@ string DBConnection::getAvailableCoursesHTML(string studentEmail) {
     return html;
 }
 
+<<<<<<< HEAD
+=======
+void DBConnection::enrollStudentInCourse(string studentEmail, int courseId) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query =
+            "INSERT INTO enrollments (student_email, course_id) VALUES ('" +
+            studentEmail + "', " +
+            to_string(courseId) + ")";
+
+        stmt->execute(query);
+
+        delete stmt;
+    }
+
+    catch (sql::SQLException& e) {
+
+        cout << "SQL ERROR: " << e.what() << endl;
+    }
+}
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 
 string DBConnection::getEnrolledStudentsHTML(string teacherEmail) {
 
@@ -786,6 +1238,7 @@ string DBConnection::getTeacherAnnouncementsHTML(string teacherEmail) {
             string courseTitle = res->getString("course_title");
             string message     = res->getString("message");
 
+<<<<<<< HEAD
          html += "<div style='"
         "background:#ffffff;"
         "border-left:5px solid #3498db;"
@@ -811,6 +1264,31 @@ html += "<span style='font-size:15px;color:#2c3e50;line-height:1.6;'>"
         "</span>";
 
 html += "</div>";
+=======
+            html += "<div style='"
+                    "background:#fff;"
+                    "border-left:4px solid #4a90d9;"
+                    "border-radius:6px;"
+                    "padding:14px 18px;"
+                    "margin:8px 0;"
+                    "box-shadow:0 1px 4px rgba(0,0,0,0.08);"
+                    "'>";
+
+            html += "<span style='"
+                    "display:inline-block;"
+                    "background:#e3f0fb;"
+                    "color:#2a6099;"
+                    "font-size:12px;"
+                    "font-weight:700;"
+                    "padding:2px 10px;"
+                    "border-radius:12px;"
+                    "margin-bottom:8px;"
+                    "'>" + courseTitle + "</span><br>";
+
+            html += "<span style='font-size:15px;color:#222;line-height:1.5;'>"
+                    + message + "</span>";
+            html += "</div>";
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
         }
 
         delete res;
@@ -863,8 +1341,12 @@ string DBConnection::getCourseTitleById(int courseId) {
         sql::Statement* stmt = con->createStatement();
 
         string query =
+<<<<<<< HEAD
             "SELECT title FROM courses WHERE id = " +
             to_string(courseId);
+=======
+            "SELECT title FROM courses WHERE id = " + to_string(courseId);
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 
         sql::ResultSet* res = stmt->executeQuery(query);
 
@@ -877,36 +1359,55 @@ string DBConnection::getCourseTitleById(int courseId) {
     }
 
     catch (sql::SQLException& e) {
+<<<<<<< HEAD
         cout << "Course lookup failed: " << e.what() << endl;
+=======
+        cout << "SQL ERROR getCourseTitleById: " << e.what() << endl;
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
     }
 
     return title;
 }
 
 string DBConnection::getTeacherCoursesDropdown(string teacherEmail) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
     string html = "";
 
     try {
         sql::Statement* stmt = con->createStatement();
 
         string query =
+<<<<<<< HEAD
             "SELECT id, title FROM courses "
             "WHERE teacher_email = '" + teacherEmail + "' "
             "AND approved = 1";
+=======
+             "SELECT id, title FROM courses WHERE teacher_email = '" + teacherEmail + "' AND approved = 1";
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 
         sql::ResultSet* res = stmt->executeQuery(query);
 
         while (res->next()) {
+<<<<<<< HEAD
             html += "<option value=\"" +
                     res->getString("id") +
                     "\">" +
                     res->getString("title") +
                     "</option>";
+=======
+            html += "<option value='" + res->getString("id") + "'>";
+            html += res->getString("title");
+            html += "</option>";
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
         }
 
         delete res;
         delete stmt;
     }
+<<<<<<< HEAD
 
     catch (sql::SQLException& e) {
         cout << "Dropdown load failed: " << e.what() << endl;
@@ -945,6 +1446,12 @@ string DBConnection::getQuizTitleById(int quizId) {
 
     return title;
 }
+=======
+    catch (...) {}
+
+    return html;
+}
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 void DBConnection::addNotification(string email, string message) {
 
     try {
@@ -1028,6 +1535,10 @@ string DBConnection::getStudentNotificationsHTML(string email) {
     }
 
     return html;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 }
 string DBConnection::getAllQuizzesHTML() {
 
@@ -1073,7 +1584,13 @@ string DBConnection::getAllQuizzesHTML() {
 }
 string DBConnection::getTeacherQuizzesHTML(string teacherEmail) {
 
+<<<<<<< HEAD
     string html = "";
+=======
+    string html =
+        "<table border='1' cellpadding='10'>"
+        "<tr><th>ID</th><th>Course</th><th>Title</th><th>Type</th><th>Total Marks</th></tr>";
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 
     try {
         sql::Statement* stmt = con->createStatement();
@@ -1088,6 +1605,7 @@ string DBConnection::getTeacherQuizzesHTML(string teacherEmail) {
 
         while (res->next()) {
 
+<<<<<<< HEAD
             html += "<div style='"
                     "background:white;"
                     "border-radius:12px;"
@@ -1126,6 +1644,21 @@ string DBConnection::getTeacherQuizzesHTML(string teacherEmail) {
                     "</p>";
 
             html += "</div>";
+=======
+            html += "<tr>";
+
+            html += "<td>" + res->getString("id") + "</td>";
+
+            html += "<td>" + res->getString("course_title") + "</td>";
+
+            html += "<td>" + res->getString("title") + "</td>";
+
+            html += "<td>" + res->getString("quiz_type") + "</td>";
+
+            html += "<td>" + res->getString("total_marks") + "</td>";
+
+            html += "</tr>";
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
         }
 
         delete res;
@@ -1134,11 +1667,20 @@ string DBConnection::getTeacherQuizzesHTML(string teacherEmail) {
 
     catch (sql::SQLException& e) {
 
+<<<<<<< HEAD
         html += "<p>Error loading quizzes</p>";
+=======
+        html += "<tr><td colspan='5'>Error loading quizzes</td></tr>";
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 
         cout << "SQL ERROR: " << e.what() << endl;
     }
 
+<<<<<<< HEAD
+=======
+    html += "</table>";
+
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
     return html;
 }
 string DBConnection::getStudentQuizzesHTML(string studentEmail) {
@@ -1218,7 +1760,37 @@ bool DBConnection::hasStudentTakenQuiz(string studentEmail, int quizId) {
 
     return false;
 }
+<<<<<<< HEAD
 
+=======
+bool DBConnection::teacherCourseExists(string teacherEmail, string title) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query =
+            "SELECT id FROM courses "
+            "WHERE teacher_email = '" + teacherEmail +
+            "' AND title = '" + title + "'";
+
+        sql::ResultSet* res = stmt->executeQuery(query);
+
+        bool exists = res->next();
+
+        delete res;
+        delete stmt;
+
+        return exists;
+    }
+
+    catch (sql::SQLException& e) {
+
+        cout << "SQL ERROR: " << e.what() << endl;
+    }
+
+    return false;
+}
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 bool DBConnection::takeQuiz(string studentEmail, int quizId) {
 
     try {
@@ -1389,6 +1961,7 @@ int DBConnection::getPendingApprovals() {
     catch (...) {}
 
     return 0;
+<<<<<<< HEAD
 
 }
 bool DBConnection::requestEnrollment(string studentEmail, int courseId) {
@@ -2244,3 +2817,8 @@ string DBConnection::getAdminAnnouncementsHTML() {
     html += "</table>";
     return html;
 }
+=======
+=======
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+}
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45

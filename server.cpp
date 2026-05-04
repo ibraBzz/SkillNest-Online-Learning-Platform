@@ -1,6 +1,13 @@
 #define CROW_MAIN
 #include "include/crow.h"
 #include "dbconnection.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 #include "observer.h"
 #include "StudentObserver.h"
 #include "AnnouncementSystem.h"
@@ -8,14 +15,31 @@
 #include "proxy.h"
 #include "quizstrategy.h"   
 #include "decorator.h"
+<<<<<<< HEAD
 #include "gradingstrategy.h"
  
+=======
+ 
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <vector>
 #include <map>
 using namespace std;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
  
 
 AnnouncementSystem announcementSystem;
@@ -24,6 +48,18 @@ AnnouncementSystem announcementSystem;
 string currentUserEmail = "";
 map<string, StudentObserver*> observerRegistry;
  
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+
+
+string currentUserEmail = "";
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 string readFile(const string& filename) {
     ifstream file(filename);
     if (!file.is_open()) {
@@ -33,6 +69,13 @@ string readFile(const string& filename) {
     buffer << file.rdbuf();
     return buffer.str();
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
  
 
 void attachStudentObserver(const string& email) {
@@ -158,6 +201,7 @@ currentUserEmail = email;
  
                 pos = page.find("{{student_lessons}}");
                 if (pos != string::npos)
+<<<<<<< HEAD
                    page.replace(pos, 19, db->getStudentLessonsHTML(email)
 );
  
@@ -173,10 +217,30 @@ currentUserEmail = email;
                    pos = page.find("{{student_grades}}");
 if (pos != string::npos)
     page.replace(pos, 18, db->getStudentGradesHTML(email));
+=======
+                    page.replace(pos, 19, "<p>Lessons module coming next...</p>");
+ 
+                pos = page.find("{{student_quizzes}}");
+                if (pos != string::npos)
+<<<<<<< HEAD
+                    page.replace(pos, 19, db->getStudentQuizzesHTML(email));
+=======
+                    page.replace(pos, 19, "<p>Quiz module coming next...</p>");
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+ 
+                pos = page.find("{{student_results}}");
+                if (pos != string::npos)
+                    page.replace(pos, 19, "<p>Results module coming next...</p>");
+ 
+                pos = page.find("{{student_grades}}");
+                if (pos != string::npos)
+                    page.replace(pos, 18, "<p>Grades module coming next...</p>");
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
  
                 pos = page.find("{{student_announcements}}");
                 if (pos != string::npos)
                     page.replace(pos, 25, db->getStudentNotificationsHTML(email));
+<<<<<<< HEAD
  pos = page.find("{{enrolled_courses}}");
 if (pos != string::npos)
     page.replace(pos, 20, to_string(db->getStudentEnrolledCourses(email)));
@@ -192,6 +256,9 @@ if (pos != string::npos)
 pos = page.find("{{published_grades}}");
 if (pos != string::npos)
     page.replace(pos, 20, to_string(db->getStudentPublishedGrades(email)));
+=======
+ 
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
                 { crow::response res(page); res.set_header("Content-Type", "text/html"); return res; }
             }
  
@@ -199,6 +266,7 @@ if (pos != string::npos)
  
                 string page = readFile("teacher_dashboard.html");
                 size_t pos;
+<<<<<<< HEAD
                 pos = page.find("{{teacher_total_courses}}");
 if (pos != string::npos)
     page.replace(
@@ -247,6 +315,12 @@ while ((pos = page.find("{{teacher_courses_dropdown}}", pos)) != string::npos) {
     page.replace(pos, 28, dropdownHTML);
     pos += dropdownHTML.length();
 }
+=======
+ 
+                pos = page.find("{{teacher_courses_dropdown}}");
+                if (pos != string::npos)
+                    page.replace(pos, 28, db->getTeacherCoursesDropdown(email));
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
  
                 pos = page.find("{{teacher_courses}}");
                 if (pos != string::npos)
@@ -254,6 +328,7 @@ while ((pos = page.find("{{teacher_courses_dropdown}}", pos)) != string::npos) {
  
                 pos = page.find("{{teacher_lessons}}");
                 if (pos != string::npos)
+<<<<<<< HEAD
                   page.replace(pos, 19, db->getTeacherLessonsHTML(email)
 );
  
@@ -265,10 +340,27 @@ while ((pos = page.find("{{teacher_courses_dropdown}}", pos)) != string::npos) {
                 if (pos != string::npos)
                   
  page.replace(pos, 18, db->getPendingQuizResultsHTML());
+=======
+                    page.replace(pos, 19, "<p>Lessons module coming next...</p>");
+ 
+                pos = page.find("{{teacher_quizzes}}");
+                if (pos != string::npos)
+<<<<<<< HEAD
+                   page.replace(pos, 19, db->getTeacherQuizzesHTML(email));
+=======
+                    page.replace(pos, 19, "<p>Quiz module coming next...</p>");
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+ 
+                pos = page.find("{{teacher_grades}}");
+                if (pos != string::npos)
+                    page.replace(pos, 18, "<p>Grading module coming next...</p>");
+ 
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
                 pos = page.find("{{teacher_enrolled_students}}");
                 if (pos != string::npos)
                     page.replace(pos, 29, db->getEnrolledStudentsHTML(email));
  
+<<<<<<< HEAD
                     pos = page.find("{{teacher_pending_enrollments}}");
 if (pos != string::npos)
     page.replace(
@@ -276,6 +368,8 @@ if (pos != string::npos)
         29,
         db->getPendingEnrollmentsHTML(email)
     );
+=======
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
                 pos = page.find("{{teacher_announcements}}");
                 if (pos != string::npos)
                     page.replace(pos, 25, db->getTeacherAnnouncementsHTML(email));
@@ -287,6 +381,10 @@ if (pos != string::npos)
  
                 string page = readFile("index.html");
                 size_t pos;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
  pos = page.find("{{total_students}}");
 if (pos != string::npos)
     page.replace(pos, 18, to_string(db->getTotalStudents()));
@@ -302,6 +400,12 @@ if (pos != string::npos)
 pos = page.find("{{pending_approvals}}");
 if (pos != string::npos)
     page.replace(pos, 21, to_string(db->getPendingApprovals()));
+<<<<<<< HEAD
+=======
+=======
+ 
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
                 pos = page.find("{{admin_students}}");
                 if (pos != string::npos)
                     page.replace(pos, 18, db->getAllStudentsHTML());
@@ -320,26 +424,214 @@ if (pos != string::npos)
  
                 pos = page.find("{{admin_announcements}}");
                 if (pos != string::npos)
+<<<<<<< HEAD
                   page.replace(pos, 23, db->getAdminAnnouncementsHTML());
  
         
  
+=======
+                    page.replace(pos, 23, "<p>Observer announcement module coming next...</p>");
+ 
+                pos = page.find("{{admin_reports}}");
+                if (pos != string::npos)
+                    page.replace(pos, 17, "<p>Reports module coming next...</p>");
+ 
+<<<<<<< HEAD
+=======
+=======
+
+
+int main() {
+
+    DBConnection* db = DBConnection::getInstance();
+db->connect();
+
+    crow::SimpleApp app;
+
+    CROW_ROUTE(app, "/")([]() {
+        return crow::response(readFile("index.html"));
+    });
+
+    CROW_ROUTE(app, "/login")
+    .methods("GET"_method, "POST"_method)
+    ([db](const crow::request& req) {
+
+        if (req.method == "GET"_method) {
+            return crow::response(readFile("login.html"));
+        }
+
+        string body = req.body;
+        string email = "";
+        string password = "";
+
+        size_t emailStart = body.find("email=");
+        size_t passStart  = body.find("&password=");
+
+        if (emailStart != string::npos && passStart != string::npos) {
+            email    = body.substr(emailStart + 6, passStart - (emailStart + 6));
+            password = body.substr(passStart + 10);
+
+            size_t atPos = email.find("%40");
+            if (atPos != string::npos) email.replace(atPos, 3, "@");
+
+            while (!password.empty() &&
+                   (password.back() == ' ' || password.back() == '\n' || password.back() == '\r'))
+                password.pop_back();
+
+            string role = db->loginUser(email, password);
+            currentUserEmail = email;
+
+            if (role == "student") {
+
+                string page = readFile("student_dashboard.html");
+                size_t pos;
+
+                pos = page.find("{{available_courses}}");
+                if (pos != string::npos)
+                    page.replace(pos, 21, db->getAvailableCoursesHTML(email));
+
+                pos = page.find("{{student_courses}}");
+                if (pos != string::npos)
+                    page.replace(pos, 19, db->getStudentCoursesHTML(email));
+
+                pos = page.find("{{student_lessons}}");
+                if (pos != string::npos)
+                    page.replace(pos, 19, "<p>Lessons</p>");
+
+                pos = page.find("{{student_quizzes}}");
+                if (pos != string::npos)
+                    page.replace(pos, 19, "<p>Quiz module</p>");
+
+                pos = page.find("{{student_results}}");
+                if (pos != string::npos)
+                    page.replace(pos, 19, "<p>Results module</p>");
+
+                pos = page.find("{{student_grades}}");
+                if (pos != string::npos)
+                    page.replace(pos, 18, "<p>Grades module</p>");
+
+                pos = page.find("{{student_announcements}}");
+                if (pos != string::npos)
+                    page.replace(pos, 25, "<p>Announcement module </p>");
+
+                { crow::response res(page); res.set_header("Content-Type", "text/html"); return res; }
+            }
+
+            else if (role == "teacher") {
+
+                string page = readFile("teacher_dashboard.html");
+                size_t pos;
+
+                pos = page.find("{{teacher_courses_dropdown}}");
+                if (pos != string::npos)
+                    page.replace(pos, 28, db->getTeacherCoursesDropdown(email));
+
+                pos = page.find("{{teacher_courses}}");
+                if (pos != string::npos)
+                    page.replace(pos, 19, db->getTeacherCoursesHTML(email));
+
+                pos = page.find("{{teacher_lessons}}");
+                if (pos != string::npos)
+                    page.replace(pos, 19, "<p>Lessons module</p>");
+
+                pos = page.find("{{teacher_quizzes}}");
+                if (pos != string::npos)
+                    page.replace(pos, 19, "<p>Quiz module</p>");
+
+                pos = page.find("{{teacher_grades}}");
+                if (pos != string::npos)
+                    page.replace(pos, 18, "<p>Grading module</p>");
+
+                pos = page.find("{{teacher_enrolled_students}}");
+                if (pos != string::npos)
+                    page.replace(pos, 29, db->getEnrolledStudentsHTML(email));
+
+                pos = page.find("{{teacher_announcements}}");
+                if (pos != string::npos)
+                    page.replace(pos, 25, "<p>Announcement module </p>");
+
+                { crow::response res(page); res.set_header("Content-Type", "text/html"); return res; }
+            }
+
+            else if (role == "admin") {
+
+                string page = readFile("index.html");
+                size_t pos;
+
+                pos = page.find("{{admin_students}}");
+                if (pos != string::npos)
+                    page.replace(pos, 18, db->getAllStudentsHTML());
+
+                pos = page.find("{{admin_teachers}}");
+                if (pos != string::npos)
+                    page.replace(pos, 18, db->getAllTeachersHTML());
+
+                pos = page.find("{{admin_courses}}");
+                if (pos != string::npos)
+                    page.replace(pos, 17, db->getAllCoursesHTML());
+
+                pos = page.find("{{admin_approvals}}");
+                if (pos != string::npos)
+                    page.replace(pos, 19, db->getPendingCoursesHTML());
+
+                pos = page.find("{{admin_announcements}}");
+                if (pos != string::npos)
+                    page.replace(pos, 23, "<p>Announcement module</p>");
+
+                pos = page.find("{{admin_reports}}");
+                if (pos != string::npos)
+                    page.replace(pos, 17, "<p>Reports module</p>");
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
                 { crow::response res(page); res.set_header("Content-Type", "text/html"); return res; }
             }
             else {
                 return crow::response(401, "Invalid credentials");
             }
         }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
  
         return crow::response(400, "Bad request");
     });
  
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+
+        return crow::response(400, "Bad request");
+    });
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
     CROW_ROUTE(app, "/style.css")([]() {
         crow::response res(readFile("style.css"));
         res.set_header("Content-Type", "text/css");
         return res;
     });
+<<<<<<< HEAD
  
+=======
+<<<<<<< HEAD
+ 
+=======
+<<<<<<< HEAD
+ 
+=======
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
     CROW_ROUTE(app, "/approve-course")
     ([db](const crow::request& req) {
         const char* idParam = req.url_params.get("id");
@@ -351,11 +643,27 @@ if (pos != string::npos)
         res.set_header("Location", "/admin-dashboard");
         return res;
     });
+<<<<<<< HEAD
  
+=======
+<<<<<<< HEAD
+ 
+=======
+<<<<<<< HEAD
+ 
+=======
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
     CROW_ROUTE(app, "/admin-dashboard")
     ([db]() {
         string page = readFile("index.html");
         size_t pos;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 
         pos = page.find("{{total_students}}");
 if (pos != string::npos)
@@ -372,6 +680,12 @@ if (pos != string::npos)
 pos = page.find("{{pending_approvals}}");
 if (pos != string::npos)
     page.replace(pos, 21, to_string(db->getPendingApprovals()));
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
  
         pos = page.find("{{admin_students}}");
         if (pos != string::npos) page.replace(pos, 18, db->getAllStudentsHTML());
@@ -386,16 +700,61 @@ if (pos != string::npos)
         if (pos != string::npos) page.replace(pos, 19, db->getPendingCoursesHTML());
  
         pos = page.find("{{admin_announcements}}");
+<<<<<<< HEAD
         if (pos != string::npos) page.replace(pos, 23, db->getAdminAnnouncementsHTML());
  
     
         { crow::response res(page); res.set_header("Content-Type", "text/html"); return res; }
     });
  
+=======
+        if (pos != string::npos) page.replace(pos, 23, "<p>Observer announcement module coming next...</p>");
+ 
+        pos = page.find("{{admin_reports}}");
+        if (pos != string::npos) page.replace(pos, 17, "<p>Reports module coming next...</p>");
+ 
+        { crow::response res(page); res.set_header("Content-Type", "text/html"); return res; }
+    });
+ 
+<<<<<<< HEAD
+=======
+=======
+
+        pos = page.find("{{admin_students}}");
+        if (pos != string::npos) page.replace(pos, 18, db->getAllStudentsHTML());
+
+        pos = page.find("{{admin_teachers}}");
+        if (pos != string::npos) page.replace(pos, 18, db->getAllTeachersHTML());
+
+        pos = page.find("{{admin_courses}}");
+        if (pos != string::npos) page.replace(pos, 17, db->getAllCoursesHTML());
+
+        pos = page.find("{{admin_approvals}}");
+        if (pos != string::npos) page.replace(pos, 19, db->getPendingCoursesHTML());
+
+        pos = page.find("{{admin_announcements}}");
+        if (pos != string::npos) page.replace(pos, 23, "<p>Announcement module</p>");
+
+        pos = page.find("{{admin_reports}}");
+        if (pos != string::npos) page.replace(pos, 17, "<p>Reports module</p>");
+
+        { crow::response res(page); res.set_header("Content-Type", "text/html"); return res; }
+    });
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 
     CROW_ROUTE(app, "/create-course")
     .methods("POST"_method)
     ([db](const crow::request& req) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
  
         string body = req.body;
         string title = "";
@@ -408,20 +767,64 @@ if (pos != string::npos)
             title       = body.substr(titleStart + 6, descStart - (titleStart + 6));
             description = body.substr(descStart + 13);
  
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+
+        string body = req.body;
+        string title = "";
+        string description = "";
+
+        size_t titleStart = body.find("title=");
+        size_t descStart  = body.find("&description=");
+
+        if (titleStart != string::npos && descStart != string::npos) {
+            title       = body.substr(titleStart + 6, descStart - (titleStart + 6));
+            description = body.substr(descStart + 13);
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
             size_t plusPos;
             while ((plusPos = title.find("+")) != string::npos)
                 title.replace(plusPos, 1, " ");
             while ((plusPos = description.find("+")) != string::npos)
                 description.replace(plusPos, 1, " ");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
  
             string teacherName = db->getUserNameByEmail(currentUserEmail);
             db->createCourse(title, description, teacherName, currentUserEmail);
         }
  
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+
+            string teacherName = db->getUserNameByEmail(currentUserEmail);
+            db->createCourse(title, description, teacherName, currentUserEmail);
+        }
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
         crow::response res(302);
         res.set_header("Location", "/teacher-dashboard");
         return res;
     });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 
 CROW_ROUTE(app, "/create-quiz")
 .methods("POST"_method)
@@ -499,6 +902,7 @@ int courseId = stoi(courseIdStr);
 
     return res;
 });
+<<<<<<< HEAD
 CROW_ROUTE(app, "/grade-quiz")
 .methods("POST"_method)
 ([db](const crow::request& req) {
@@ -558,11 +962,22 @@ db->publishGrade(
     return res;
 });
  
+=======
+ 
+=======
+<<<<<<< HEAD
+ 
+=======
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
     CROW_ROUTE(app, "/teacher-dashboard")
     ([db]() {
         string teacherEmail = currentUserEmail;
         string page = readFile("teacher_dashboard.html");
         size_t pos;
+<<<<<<< HEAD
  pos = page.find("{{teacher_total_courses}}");
 if (pos != string::npos)
     page.replace(
@@ -646,10 +1061,41 @@ pos = page.find("{{teacher_courses}}");
         pos = page.find("{{teacher_grades}}");
         if (pos != string::npos)
            page.replace(pos, 18, db->getPendingQuizResultsHTML());
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+ 
+        pos = page.find("{{teacher_courses_dropdown}}");
+        if (pos != string::npos)
+            page.replace(pos, 28, db->getTeacherCoursesDropdown(teacherEmail));
+ 
+        pos = page.find("{{teacher_courses}}");
+        if (pos != string::npos)
+            page.replace(pos, 19, db->getTeacherCoursesHTML(teacherEmail));
+ 
+        pos = page.find("{{teacher_lessons}}");
+        if (pos != string::npos)
+            page.replace(pos, 19, "<p>Lessons module coming next...</p>");
+ 
+        pos = page.find("{{teacher_quizzes}}");
+        if (pos != string::npos)
+<<<<<<< HEAD
+         page.replace(pos, 19, db->getTeacherQuizzesHTML(teacherEmail));
+=======
+            page.replace(pos, 19, "<p>Quiz module coming next...</p>");
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+ 
+        pos = page.find("{{teacher_grades}}");
+        if (pos != string::npos)
+            page.replace(pos, 18, "<p>Grading module coming next...</p>");
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
  
         pos = page.find("{{teacher_enrolled_students}}");
         if (pos != string::npos)
             page.replace(pos, 29, db->getEnrolledStudentsHTML(teacherEmail));
+<<<<<<< HEAD
  pos = page.find("{{teacher_pending_enrollments}}");
 if (pos != string::npos)
     page.replace(
@@ -657,28 +1103,91 @@ if (pos != string::npos)
         29,
         db->getPendingEnrollmentsHTML(teacherEmail)
     );
+=======
+ 
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
         pos = page.find("{{teacher_announcements}}");
         if (pos != string::npos)
             page.replace(pos, 25, db->getTeacherAnnouncementsHTML(teacherEmail));
  
+<<<<<<< HEAD
         crow::response res(page);
 res.set_header("Content-Type", "text/html");
 return res;
     });
  
+=======
+        { crow::response res(page); res.set_header("Content-Type", "text/html"); return res; }
+    });
+ 
+<<<<<<< HEAD
+=======
+=======
+
+        pos = page.find("{{teacher_courses_dropdown}}");
+        if (pos != string::npos)
+            page.replace(pos, 28, db->getTeacherCoursesDropdown(teacherEmail));
+
+        pos = page.find("{{teacher_courses}}");
+        if (pos != string::npos)
+            page.replace(pos, 19, db->getTeacherCoursesHTML(teacherEmail));
+
+        pos = page.find("{{teacher_lessons}}");
+        if (pos != string::npos)
+            page.replace(pos, 19, "<p>Lessons module</p>");
+
+        pos = page.find("{{teacher_quizzes}}");
+        if (pos != string::npos)
+            page.replace(pos, 19, "<p>Quiz module</p>");
+
+        pos = page.find("{{teacher_grades}}");
+        if (pos != string::npos)
+            page.replace(pos, 18, "<p>Grading module</p>");
+
+        pos = page.find("{{teacher_enrolled_students}}");
+        if (pos != string::npos)
+            page.replace(pos, 29, db->getEnrolledStudentsHTML(teacherEmail));
+
+        pos = page.find("{{teacher_announcements}}");
+        if (pos != string::npos)
+            page.replace(pos, 25, "<p>Announcement module coming next...</p>");
+
+        { crow::response res(page); res.set_header("Content-Type", "text/html"); return res; }
+    });
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
     CROW_ROUTE(app, "/enroll-course")
     ([db](const crow::request& req) {
         const char* idParam = req.url_params.get("id");
         if (idParam) {
             int courseId = stoi(idParam);
+<<<<<<< HEAD
             EnrollmentProxy proxy;
 proxy.enrollStudent(currentUserEmail, courseId);
             attachStudentObserver(currentUserEmail);
+=======
+<<<<<<< HEAD
+            EnrollmentProxy proxy;
+proxy.enrollStudent(currentUserEmail, courseId);
+            attachStudentObserver(currentUserEmail);
+=======
+<<<<<<< HEAD
+            EnrollmentProxy proxy;
+proxy.enrollStudent(currentUserEmail, courseId);
+            attachStudentObserver(currentUserEmail);
+=======
+            db->enrollStudentInCourse(currentUserEmail, courseId);
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
         }
         crow::response res(302);
         res.set_header("Location", "/student-dashboard");
         return res;
     });
+<<<<<<< HEAD
  CROW_ROUTE(app, "/approve-enrollment")
 ([db](const crow::request& req) {
 
@@ -716,6 +1225,10 @@ CROW_ROUTE(app, "/reject-enrollment")
 
     return res;
 });
+=======
+<<<<<<< HEAD
+ 
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 CROW_ROUTE(app, "/take-quiz")
 .methods("POST"_method)
 ([db](const crow::request& req) {
@@ -766,11 +1279,28 @@ CROW_ROUTE(app, "/take-quiz")
 
 });
 
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+ 
+=======
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
     CROW_ROUTE(app, "/student-dashboard")
     ([db]() {
         string studentEmail = currentUserEmail;
         string page = readFile("student_dashboard.html");
         size_t pos;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
  
         pos = page.find("{{available_courses}}");
         if (pos != string::npos)
@@ -782,6 +1312,7 @@ CROW_ROUTE(app, "/take-quiz")
  
         pos = page.find("{{student_lessons}}");
         if (pos != string::npos)
+<<<<<<< HEAD
             page.replace(pos,19,db->getStudentLessonsHTML(studentEmail)
 );
  
@@ -816,6 +1347,29 @@ if (pos != string::npos)
 pos = page.find("{{student_grades}}");
 if (pos != string::npos)
     page.replace(pos, 18, db->getStudentGradesHTML(studentEmail));
+=======
+            page.replace(pos, 19, "<p>Lessons module coming next...</p>");
+ 
+        pos = page.find("{{student_quizzes}}");
+        if (pos != string::npos)
+<<<<<<< HEAD
+            db->viewQuizzes();
+                    page.replace(pos, 19, db->getStudentQuizzesHTML(studentEmail));
+         
+
+
+=======
+            page.replace(pos, 19, "<p>Quiz module coming next...</p>");
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+ 
+        pos = page.find("{{student_results}}");
+        if (pos != string::npos)
+            page.replace(pos, 19, "<p>Results module coming next...</p>");
+ 
+        pos = page.find("{{student_grades}}");
+        if (pos != string::npos)
+            page.replace(pos, 18, "<p>Grades module coming next...</p>");
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
  
         pos = page.find("{{student_announcements}}");
         if (pos != string::npos)
@@ -883,6 +1437,10 @@ if (pos != string::npos)
         res.set_header("Location", "/teacher-dashboard");
         return res;
     });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
     CROW_ROUTE(app, "/quiz-page")
 ([db](const crow::request& req) {
 
@@ -985,6 +1543,7 @@ return res;
         "Registration failed"
     );
 });
+<<<<<<< HEAD
 
 CROW_ROUTE(app, "/create-lesson")
 .methods("POST"_method)
@@ -1059,6 +1618,45 @@ while ((plusPos = videoUrl.find("%2F")) != string::npos)
 
 
 
+=======
+=======
+ 
+=======
+
+        pos = page.find("{{available_courses}}");
+        if (pos != string::npos)
+            page.replace(pos, 21, db->getAvailableCoursesHTML(studentEmail));
+
+        pos = page.find("{{student_courses}}");
+        if (pos != string::npos)
+            page.replace(pos, 19, db->getStudentCoursesHTML(studentEmail));
+
+        pos = page.find("{{student_lessons}}");
+        if (pos != string::npos)
+            page.replace(pos, 19, "<p>Lessons module </p>");
+
+        pos = page.find("{{student_quizzes}}");
+        if (pos != string::npos)
+            page.replace(pos, 19, "<p>Quiz module</p>");
+
+        pos = page.find("{{student_results}}");
+        if (pos != string::npos)
+            page.replace(pos, 19, "<p>Results module</p>");
+
+        pos = page.find("{{student_grades}}");
+        if (pos != string::npos)
+            page.replace(pos, 18, "<p>Grades module</p>");
+
+        pos = page.find("{{student_announcements}}");
+        if (pos != string::npos)
+            page.replace(pos, 25, "<p>Announcement module</p>");
+
+        { crow::response res(page); res.set_header("Content-Type", "text/html"); return res; }
+    });
+
+>>>>>>> f7de92974797c639f914a55b802a7f7ae855553a
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
     app.port(18080).multithreaded().run();
     return 0;
 }

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillNest Login</title>
+    <link rel="stylesheet" href="style.css">
+<<<<<<< HEAD
+
+    <script>
+        function showRegister() {
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("registerForm").style.display = "block";
+        }
+
+        function showLogin() {
+            document.getElementById("registerForm").style.display = "none";
+            document.getElementById("loginForm").style.display = "block";
+        }
+    </script>
+</head>
+<body>
+
+    <!-- LOGIN FORM -->
+    <div class="login-container" id="loginForm">
+        <h2>SkillNest Login</h2>
+
+        <form action="/login" method="post">
+
+            <input type="email"
+                   name="email"
+                   placeholder="Enter Email"
+                   required>
+
+            <input type="password"
+                   name="password"
+                   placeholder="Enter Password"
+                   required>
+
+            <button type="submit">Login</button>
+
+        </form>
+
+        <p>
+            Don’t have an account?
+            <a href="javascript:void(0);" onclick="showRegister()">
+                Create New Profile
+            </a>
+        </p>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div class="login-container"
+         id="registerForm"
+         style="display:none;">
+
+        <h2>Create SkillNest Account</h2>
+
+        <form action="/register" method="post">
+
+            <input type="text"
+                   name="name"
+                   placeholder="Full Name"
+                   required>
+
+            <input type="email"
+                   name="email"
+                   placeholder="Enter Email"
+                   required>
+
+            <input type="password"
+                   name="password"
+                   placeholder="Enter Password"
+                   required>
+
+            <select name="role" required>
+                <option value="">Select Role</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button type="submit">Create Account</button>
+
+        </form>
+
+        <p>
+            Already have an account?
+            <a href="javascript:void(0);" onclick="showLogin()">
+                Back to Login
+            </a>
+        </p>
+=======
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>SkillNest Login</h2>
+
+        <form action="/login" method="post">
+            <input type="email" name="email" placeholder="Enter Email" required>
+
+            <input type="password" name="password" placeholder="Enter Password" required>
+
+            <button type="submit">Login</button>
+        </form>
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+    </div>
+
+</body>
+</html>

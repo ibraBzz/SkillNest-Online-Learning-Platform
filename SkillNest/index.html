@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillNest Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   
+    <header class="top-header" id="dashboard">
+        <h1>SkillNest - Online Learning Platform</h1>
+    </header>
+
+  
+    <nav class="navbar">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#students">Students</a>
+        <a href="#teachers">Teachers</a>
+        <a href="#courses">Courses</a>
+        <a href="#approvals">Approvals</a>
+        <a href="#announcements">Announcements</a>
+        <a href="#reports">Reports</a>
+        <a href="/login">Logout</a>
+    </nav>
+
+   
+    <section class="stats-container">
+        <div class="card">Total Students</div>
+        <div class="card">Total Teachers</div>
+        <div class="card">Total Courses</div>
+        <div class="card">Pending Approvals</div>
+    </section>
+
+    <section class="quick-access">
+        <h2>Admin Quick Access</h2>
+
+        <div class="quick-grid">
+            <div class="quick-card">
+                <h3>Students</h3>
+                <p>Manage student accounts</p>
+            </div>
+
+            <div class="quick-card">
+                <h3>Teachers</h3>
+                <p>Manage teacher accounts</p>
+            </div>
+
+            <div class="quick-card">
+                <h3>Courses</h3>
+                <p>View all courses</p>
+            </div>
+
+            <div class="quick-card">
+                <h3>Approvals</h3>
+                <p>Approve pending courses</p>
+            </div>
+
+            <div class="quick-card">
+                <h3>Announcements</h3>
+                <p>Broadcast updates</p>
+            </div>
+
+            <div class="quick-card">
+                <h3>Reports</h3>
+                <p>System analytics</p>
+            </div>
+        </div>
+    </section>
+
+   
+    <section class="table-section" id="students">
+        <h2>Students</h2>
+        {{admin_students}}
+    </section>
+
+   
+    <section class="table-section" id="teachers">
+        <h2>Teachers</h2>
+        {{admin_teachers}}
+    </section>
+
+   
+    <section class="table-section" id="courses">
+        <h2>Courses</h2>
+        {{admin_courses}}
+    </section>
+
+   
+    <section class="table-section" id="approvals">
+        <h2>Pending Approvals</h2>
+        {{admin_approvals}}
+    </section>
+
+  
+    <section class="table-section" id="announcements">
+        <h2>Announcements</h2>
+        {{admin_announcements}}
+    </section>
+
+  
+    <section class="table-section" id="reports">
+        <h2>Reports</h2>
+        {{admin_reports}}
+    </section>
+
+
+    <footer>
+        © SkillNest - Online Learning Platform | North South University
+    </footer>
+
+</body>
+</html>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #pragma once
 #include <string>
 #include <iostream>
@@ -12,24 +13,47 @@ class Course {
 public:
     virtual string getDescription() = 0;
     virtual string getFeatures()    = 0;  // returns HTML-friendly feature list
+=======
+#ifndef DECORATOR_H
+#define DECORATOR_H
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Course {
+public:
+    virtual string getDescription() = 0;
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
     virtual ~Course() {}
 };
 
 
+<<<<<<< HEAD
 // ─────────────────────────────────────────────
 // STEP 2: Concrete Component
 // The plain course with no extras.
 // ─────────────────────────────────────────────
+=======
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 class BasicCourse : public Course {
 private:
     string title;
 
 public:
+<<<<<<< HEAD
     BasicCourse(string t) : title(t) {}
+=======
+    BasicCourse(string t) {
+        title = t;
+    }
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
 
     string getDescription() override {
         return title;
     }
+<<<<<<< HEAD
 
     string getFeatures() override {
         return "<li><label><input type='checkbox'> Basic Course Access</label></li>";
@@ -103,3 +127,46 @@ public:
              + "<li><label><input type='checkbox'> Extra Video Bundle</label></li>";
     }
 };
+=======
+};
+
+
+class CourseDecorator : public Course {
+protected:
+    Course* decoratedCourse;
+
+public:
+    CourseDecorator(Course* course) {
+        decoratedCourse = course;
+    }
+};
+
+
+class CertificateDecorator : public CourseDecorator {
+public:
+    CertificateDecorator(Course* course) : CourseDecorator(course) {}
+
+    string getDescription() override {
+        return decoratedCourse->getDescription() + " + Certificate";
+    }
+};
+
+
+class NotesDecorator : public CourseDecorator {
+public:
+    NotesDecorator(Course* course) : CourseDecorator(course) {}
+
+    string getDescription() override {
+        return decoratedCourse->getDescription() + " + Extra Notes";
+    }
+};
+class VideoBundleDecorator : public CourseDecorator {
+public:
+    VideoBundleDecorator(Course* course) : CourseDecorator(course) {}
+
+    string getDescription() override {
+        return decoratedCourse->getDescription() + " + Video Bundle";
+    }
+};
+#endif
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
