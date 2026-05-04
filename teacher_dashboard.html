@@ -109,6 +109,10 @@
         <a href="/login">Logout</a>
     </nav>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> cbcd5d9be179275e877090e2ba9baa8884ce0a7b
   <section class="stats-container">
 
     <div class="card">
@@ -160,6 +164,31 @@
 
     </div>
 </section>
+<<<<<<< HEAD
+=======
+=======
+    
+    <section class="stats-container">
+        <div class="card">My Courses</div>
+        <div class="card">Lessons Uploaded</div>
+        <div class="card">Quizzes Created</div>
+        <div class="card">Students Managed</div>
+    </section>
+
+   
+    <section class="quick-access">
+        <h2>Teacher Quick Access</h2>
+        <div class="quick-grid">
+            <div class="quick-card"><h3>Courses</h3><p>Manage created courses</p></div>
+            <div class="quick-card"><h3>Lessons</h3><p>Upload and manage lessons</p></div>
+            <div class="quick-card"><h3>Quizzes</h3><p>Create assessments</p></div>
+            <div class="quick-card"><h3>Grades</h3><p>Grade student work</p></div>
+            <div class="quick-card"><h3>Progress</h3><p>Monitor students</p></div>
+            <div class="quick-card"><h3>Announcements</h3><p>Notify students</p></div>
+        </div>
+    </section>
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
+>>>>>>> cbcd5d9be179275e877090e2ba9baa8884ce0a7b
 
   
     <section class="table-section">
@@ -182,6 +211,10 @@
 
     <section class="table-section" id="lessons">
         <h2>Lessons</h2>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> cbcd5d9be179275e877090e2ba9baa8884ce0a7b
         <h3>Create Lesson</h3>
 
 <form action="/create-lesson" method="POST">
@@ -203,18 +236,41 @@
     <button type="submit">Create Lesson</button>
 
 </form><br>
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
+>>>>>>> cbcd5d9be179275e877090e2ba9baa8884ce0a7b
         {{teacher_lessons}}
     </section>
 
   
     <section class="table-section" id="quizzes">
         <h2>Created Quizzes</h2>
+<<<<<<< HEAD
         <form action="/create-quiz" method="POST">
            <label>Select Course:</label><br>
+=======
+<<<<<<< HEAD
+        <form action="/create-quiz" method="POST">
+           <label>Select Course:</label><br>
+=======
+<<<<<<< HEAD
+        <form action="/create-quiz" method="POST">
+            <label>Select Course:</label><br>
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
+>>>>>>> cbcd5d9be179275e877090e2ba9baa8884ce0a7b
 <select name="course_id" required>
     <option value="" disabled selected>-- Choose Course --</option>
     {{teacher_courses_dropdown}}
 </select><br><br>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
+>>>>>>> cbcd5d9be179275e877090e2ba9baa8884ce0a7b
     <label>Quiz Title:</label><br>
     <input type="text" name="title" required><br><br>
 
@@ -230,10 +286,22 @@
     <button type="submit">Create Quiz</button>
 </form>
         
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
+>>>>>>> cbcd5d9be179275e877090e2ba9baa8884ce0a7b
         {{teacher_quizzes}}
     </section>
 
    
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> cbcd5d9be179275e877090e2ba9baa8884ce0a7b
    <section class="table-section" id="grades">
     <h2>Grade Quiz</h2>
 
@@ -253,12 +321,29 @@
 
     </form>
 </section>
+<<<<<<< HEAD
+=======
+=======
+    <section class="table-section" id="grades">
+        <h2>Grade Quiz</h2>
+        {{teacher_grades}}
+    </section>
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
+>>>>>>> cbcd5d9be179275e877090e2ba9baa8884ce0a7b
 
     <section class="table-section" id="progress">
         <h2>Enrolled Students</h2>
         {{teacher_enrolled_students}}
+<<<<<<< HEAD
         <h2>Pending Enrollment Requests</h2>
 {{teacher_pending_enrollments}}
+=======
+<<<<<<< HEAD
+        <h2>Pending Enrollment Requests</h2>
+{{teacher_pending_enrollments}}
+=======
+>>>>>>> 451e74d704a00d31deef478e5ed597f4517dcb45
+>>>>>>> cbcd5d9be179275e877090e2ba9baa8884ce0a7b
     </section>
 
 

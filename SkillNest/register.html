@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create SkillNest Account</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-header">
+    <h1>SkillNest - Create Account</h1>
+</header>
+
+<div class="login-container">
+    <h2>Create New Profile</h2>
+
+    <!-- FACTORY DESIGN PATTERN START
+         This form sends the selected role to /register.
+         The backend uses UserFactory to create the correct user object.
+         FACTORY DESIGN PATTERN END -->
+
+    <form action="/register" method="post">
+        <input type="text" name="name" placeholder="Enter Full Name" required>
+        <input type="email" name="email" placeholder="Enter Email" required>
+        <input type="password" name="password" placeholder="Create Password" required>
+
+        <select name="role" required>
+            <option value="" disabled selected>Select Role</option>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+        </select>
+
+        <button type="submit">Create Account</button>
+    </form>
+
+    <p style="margin-top: 20px;">
+        Already have an account?
+        <a href="/login">Back to Login</a>
+    </p>
+</div>
+
+<footer>
+    © SkillNest - Online Learning Platform | North South University
+</footer>
+
+</body>
+</html>

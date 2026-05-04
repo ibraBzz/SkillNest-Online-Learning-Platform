@@ -45,6 +45,10 @@ body {
     gap: 20px;
     margin: 30px;
     align-items: stretch;
+    display: flex;
+    justify-content: space-around;
+    margin: 30px;
+    gap: 20px;
 }
 
 .card {
@@ -76,6 +80,14 @@ body {
     font-weight: bold;
     color: white;
 }
+    flex: 1;
+    text-align: center;
+    padding: 40px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
 /* Quick Access */
 .quick-access {
     background: white;
@@ -92,6 +104,7 @@ body {
 .quick-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
 
@@ -127,6 +140,19 @@ body {
     color: rgba(255,255,255,0.8);
     font-size: 14px;
 }
+    border: 1px solid #ddd;
+    padding: 35px;
+    text-align: center;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+.quick-card h3 {
+    color: #2f6da5;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
 /* Tables */
 .table-section {
     background: white;
@@ -167,6 +193,7 @@ button {
     padding: 8px 14px;
     border: none;
     color: rgb(161, 183, 250);
+    color: white;
     border-radius: 4px;
     cursor: pointer;
     margin-right: 5px;
@@ -334,4 +361,5 @@ form button {
 
 form button:hover {
     background: #2980b9;
+}
 }
