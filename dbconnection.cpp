@@ -75,6 +75,29 @@ bool DBConnection::loginUser(string email, string password, string &role) {
     }
 }
 
+<<<<<<< HEAD
+=======
+bool DBConnection::registerUser(string name, string email, string password, string role) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query = "INSERT INTO users (name, email, password, role) VALUES ('" +
+                       name + "', '" + email + "', '" + password + "', '" + role + "')";
+
+        stmt->execute(query);
+
+        delete stmt;
+
+        return true;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Registration failed: " << e.what() << endl;
+        return false;
+    }
+}
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
 
 
 bool DBConnection::addCourse(string title, string description, string teacherName) {
@@ -276,7 +299,31 @@ void DBConnection::viewQuizzes() {
         cout << "Viewing quizzes failed: " << e.what() << endl;
     }
 }
+<<<<<<< HEAD
 
+=======
+bool DBConnection::takeQuiz(string studentEmail, int quizId) {
+
+    try {
+        sql::Statement* stmt = con->createStatement();
+
+        string query =
+            "INSERT INTO quiz_results (student_email, quiz_id, score, graded) VALUES ('" +
+            studentEmail + "', " + to_string(quizId) + ", NULL, FALSE)";
+
+        stmt->execute(query);
+
+        delete stmt;
+
+        return true;
+    }
+
+    catch (sql::SQLException& e) {
+        cout << "Quiz submission failed: " << e.what() << endl;
+        return false;
+    }
+}
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
 void DBConnection::viewPendingSubmissions() {
 
     try {
@@ -1306,6 +1353,7 @@ string DBConnection::getStudentNotificationsHTML(string email) {
     }
 
     return html;
+<<<<<<< HEAD
 }
 string DBConnection::getAllQuizzesHTML() {
 
@@ -1672,4 +1720,6 @@ int DBConnection::getPendingApprovals() {
     catch (...) {}
 
     return 0;
+=======
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
 }

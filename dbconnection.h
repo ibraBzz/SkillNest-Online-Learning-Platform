@@ -12,6 +12,10 @@ using namespace std;
 class DBConnection {
 private:
     static DBConnection* instance;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
 
     sql::mysql::MySQL_Driver* driver;
     sql::Connection* con;
@@ -25,7 +29,11 @@ public:
 
     sql::Connection* getConnection();
     bool loginUser(string email, string password, string &role);
+<<<<<<< HEAD
     
+=======
+    bool registerUser(string name, string email, string password, string role);
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
     bool addCourse(string title, string description, string teacherName);
     void viewCourses();
     bool enrollCourse(string studentEmail, int courseId);
@@ -36,7 +44,11 @@ public:
     void viewLessons(int courseId);
     bool addQuiz(int courseId, string teacherName, string title, string quizType, int totalMarks);
     void viewQuizzes();
+<<<<<<< HEAD
   
+=======
+   bool takeQuiz(string studentEmail, int quizId);
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
    void viewPendingSubmissions();
    bool gradeQuiz(int resultId, int score);
    void viewQuizResults(string studentEmail);
@@ -68,6 +80,7 @@ string getCourseTitleById(int courseId);
 string getTeacherCoursesDropdown(string teacherEmail);
 void addNotification(string email, string message);
 string getStudentNotificationsHTML(string email);
+<<<<<<< HEAD
 string getAllQuizzesHTML();
 string getTeacherQuizzesHTML(string teacherEmail);
 string getStudentQuizzesHTML(string studentEmail);
@@ -83,4 +96,9 @@ int getPendingApprovals();
 };
 
 
+=======
+
+};
+
+>>>>>>> ea47ecb20d3ff2b046e1ffb5b495339bf3b235bb
 #endif
