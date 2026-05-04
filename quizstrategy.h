@@ -51,4 +51,5 @@ public:
         strategy->conductQuiz();
     }
 };
+
 #endif
